@@ -240,10 +240,80 @@
       left: -6vw;
     }
 
+    .lang-switch {
+      position: fixed;
+      top: 22px;
+      right: 24px;
+      z-index: 10;
+    }
+
+    .lang-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lang-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang-button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .lang-menu {
+      margin-top: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      min-width: 210px;
+    }
+
+    .lang-menu button {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 13px;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .lang-menu button.active {
+      background: var(--action-bg);
+      color: var(--text-primary);
+      border-color: var(--border);
+    }
+
+    .lang-menu button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     @media (max-width: 720px) {
       .hero { padding: 22px; }
       .layout { padding: 24px 18px 56px; }
       .hero p { font-size: 16px; }
+      .lang-switch { top: 16px; right: 16px; }
+      .lang-button { padding: 8px 12px; font-size: 12px; }
+      .lang-menu { min-width: 180px; }
     }
   </style>
 </head>
@@ -253,60 +323,219 @@
     <div class="shape two"></div>
   </div>
 
+  <div class="lang-switch" data-lang-switch>
+    <button class="lang-button" type="button" aria-expanded="false" aria-controls="lang-menu" data-lang-toggle>
+      <span data-i18n="lang_label">Idioma</span>
+    </button>
+    <div class="lang-menu" id="lang-menu" role="menu" hidden data-lang-menu>
+      <button type="button" role="menuitem" data-lang="es">ES &middot; Espa&#241;ol</button>
+      <button type="button" role="menuitem" data-lang="pt">PT &middot; Portugu&#234;s</button>
+      <button type="button" role="menuitem" data-lang="fr">FR &middot; Fran&#231;ais</button>
+    </div>
+  </div>
+
   <main class="layout">
     <section class="hero">
-      <div class="eyebrow">Politica de privacidad</div>
-      <h1>Tu informacion y tus derechos</h1>
-      <p>Lee esta politica para conocer como tratamos tus datos.</p>
+      <div class="eyebrow" data-i18n="eyebrow">Politica de privacidad</div>
+      <h1 data-i18n="hero_title">Tu informacion y tus derechos</h1>
+      <p data-i18n="hero_desc">Lee esta politica para conocer como tratamos tus datos.</p>
       <div class="chip-row">
-        <span class="chip">Transparencia</span>
-        <span class="chip">Control del usuario</span>
-        <span class="chip">Uso responsable</span>
+        <span class="chip" data-i18n="chip_transparency">Transparencia</span>
+        <span class="chip" data-i18n="chip_control">Control del usuario</span>
+        <span class="chip" data-i18n="chip_responsible">Uso responsable</span>
       </div>
     </section>
 
     <section class="grid two">
       <article class="card">
-        <h3>Datos que recopilamos</h3>
-        <p>Podemos recopilar datos basicos como nombre, email y telefono cuando solicitas ser contactado, ademas del contenido que compartes en la comunidad.</p>
+        <h3 data-i18n="card1_title">Datos que recopilamos</h3>
+        <p data-i18n="card1_body">Podemos recopilar datos basicos como nombre, email y telefono cuando solicitas ser contactado, ademas del contenido que compartes en la comunidad.</p>
       </article>
       <article class="card">
-        <h3>Uso de la informacion</h3>
-        <p>Usamos la informacion para responder solicitudes, mejorar la app y moderar contenido. No usamos datos con fines publicitarios.</p>
+        <h3 data-i18n="card2_title">Uso de la informacion</h3>
+        <p data-i18n="card2_body">Usamos la informacion para responder solicitudes, mejorar la app y moderar contenido. No usamos datos con fines publicitarios.</p>
       </article>
       <article class="card">
-        <h3>Almacenamiento y seguridad</h3>
-        <p>Los datos se almacenan en servicios en la nube con medidas de seguridad razonables. Limitamos el acceso y protegemos la informacion.</p>
+        <h3 data-i18n="card3_title">Almacenamiento y seguridad</h3>
+        <p data-i18n="card3_body">Los datos se almacenan en servicios en la nube con medidas de seguridad razonables. Limitamos el acceso y protegemos la informacion.</p>
       </article>
       <article class="card">
-        <h3>Terceros</h3>
-        <p>Podemos utilizar proveedores de servicios para operar la app. Estos proveedores solo acceden a la informacion necesaria para prestar el servicio.</p>
+        <h3 data-i18n="card4_title">Terceros</h3>
+        <p data-i18n="card4_body">Podemos utilizar proveedores de servicios para operar la app. Estos proveedores solo acceden a la informacion necesaria para prestar el servicio.</p>
       </article>
     </section>
 
     <section>
       <div class="section-title">
-        <span>Contacto</span>
+        <span data-i18n="section_contact">Contacto</span>
       </div>
       <div class="card">
-        <h3>Informacion de contacto</h3>
-        <p>Si tienes dudas sobre esta politica, escribe a nuestro equipo de soporte.</p>
+        <h3 data-i18n="contact_title">Informacion de contacto</h3>
+        <p data-i18n="contact_body">Si tienes dudas sobre esta politica, escribe a nuestro equipo de soporte.</p>
       </div>
     </section>
 
     <section>
       <div class="section-title">
-        <span>Cambios</span>
+        <span data-i18n="section_changes">Cambios</span>
       </div>
       <div class="card">
-        <h3>Cambios en la politica</h3>
-        <p>Podemos actualizar esta politica ocasionalmente. Te avisaremos cuando existan cambios relevantes.</p>
+        <h3 data-i18n="changes_title">Cambios en la politica</h3>
+        <p data-i18n="changes_body">Podemos actualizar esta politica ocasionalmente. Te avisaremos cuando existan cambios relevantes.</p>
       </div>
     </section>
 
-    <div class="footer">
+    <div class="footer" data-i18n="footer">
       Esta politica se aplica a la aplicacion movil de Tu Alimento Diario. Si necesitas ayuda adicional, nuestro equipo puede orientarte.
     </div>
   </main>
+
+  <script>
+    const translations = {
+      es: {
+        title: "Politica de privacidad | Tu Alimento Diario",
+        lang_label: "Idioma",
+        eyebrow: "Politica de privacidad",
+        hero_title: "Tu informacion y tus derechos",
+        hero_desc: "Lee esta politica para conocer como tratamos tus datos.",
+        chip_transparency: "Transparencia",
+        chip_control: "Control del usuario",
+        chip_responsible: "Uso responsable",
+        card1_title: "Datos que recopilamos",
+        card1_body: "Podemos recopilar datos basicos como nombre, email y telefono cuando solicitas ser contactado, ademas del contenido que compartes en la comunidad.",
+        card2_title: "Uso de la informacion",
+        card2_body: "Usamos la informacion para responder solicitudes, mejorar la app y moderar contenido. No usamos datos con fines publicitarios.",
+        card3_title: "Almacenamiento y seguridad",
+        card3_body: "Los datos se almacenan en servicios en la nube con medidas de seguridad razonables. Limitamos el acceso y protegemos la informacion.",
+        card4_title: "Terceros",
+        card4_body: "Podemos utilizar proveedores de servicios para operar la app. Estos proveedores solo acceden a la informacion necesaria para prestar el servicio.",
+        section_contact: "Contacto",
+        contact_title: "Informacion de contacto",
+        contact_body: "Si tienes dudas sobre esta politica, escribe a nuestro equipo de soporte.",
+        section_changes: "Cambios",
+        changes_title: "Cambios en la politica",
+        changes_body: "Podemos actualizar esta politica ocasionalmente. Te avisaremos cuando existan cambios relevantes.",
+        footer: "Esta politica se aplica a la aplicacion movil de Tu Alimento Diario. Si necesitas ayuda adicional, nuestro equipo puede orientarte."
+      },
+      pt: {
+        title: "Pol\u00edtica de privacidade | Tu Alimento Diario",
+        lang_label: "Idioma",
+        eyebrow: "Pol\u00edtica de privacidade",
+        hero_title: "Suas informa\u00e7\u00f5es e seus direitos",
+        hero_desc: "Leia esta pol\u00edtica para entender como tratamos seus dados.",
+        chip_transparency: "Transpar\u00eancia",
+        chip_control: "Controle do usu\u00e1rio",
+        chip_responsible: "Uso respons\u00e1vel",
+        card1_title: "Dados que coletamos",
+        card1_body: "Podemos coletar dados b\u00e1sicos como nome, e-mail e telefone quando voc\u00ea solicita ser contatado, al\u00e9m do conte\u00fado que compartilha na comunidade.",
+        card2_title: "Uso das informa\u00e7\u00f5es",
+        card2_body: "Usamos as informa\u00e7\u00f5es para responder solicita\u00e7\u00f5es, melhorar o app e moderar conte\u00fado. N\u00e3o usamos dados para fins publicit\u00e1rios.",
+        card3_title: "Armazenamento e seguran\u00e7a",
+        card3_body: "Os dados s\u00e3o armazenados em servi\u00e7os na nuvem com medidas de seguran\u00e7a razo\u00e1veis. Limitamos o acesso e protegemos as informa\u00e7\u00f5es.",
+        card4_title: "Terceiros",
+        card4_body: "Podemos utilizar provedores de servi\u00e7os para operar o app. Esses provedores s\u00f3 acessam as informa\u00e7\u00f5es necess\u00e1rias para prestar o servi\u00e7o.",
+        section_contact: "Contato",
+        contact_title: "Informa\u00e7\u00f5es de contato",
+        contact_body: "Se tiver d\u00favidas sobre esta pol\u00edtica, escreva para nossa equipe de suporte.",
+        section_changes: "Mudan\u00e7as",
+        changes_title: "Mudan\u00e7as na pol\u00edtica",
+        changes_body: "Podemos atualizar esta pol\u00edtica ocasionalmente. Avisaremos quando houver mudan\u00e7as relevantes.",
+        footer: "Esta pol\u00edtica se aplica ao aplicativo m\u00f3vel do Tu Alimento Diario. Se precisar de ajuda adicional, nossa equipe pode orientar voc\u00ea."
+      },
+      fr: {
+        title: "Politique de confidentialit\u00e9 | Tu Alimento Diario",
+        lang_label: "Langue",
+        eyebrow: "Politique de confidentialit\u00e9",
+        hero_title: "Vos informations et vos droits",
+        hero_desc: "Lisez cette politique pour comprendre comment nous traitons vos donn\u00e9es.",
+        chip_transparency: "Transparence",
+        chip_control: "Contr\u00f4le de l'utilisateur",
+        chip_responsible: "Usage responsable",
+        card1_title: "Donn\u00e9es que nous collectons",
+        card1_body: "Nous pouvons collecter des donn\u00e9es de base comme le nom, l'email et le t\u00e9l\u00e9phone lorsque vous demandez \u00e0 \u00eatre contact\u00e9, ainsi que le contenu que vous partagez dans la communaut\u00e9.",
+        card2_title: "Utilisation des informations",
+        card2_body: "Nous utilisons les informations pour r\u00e9pondre aux demandes, am\u00e9liorer l'app et mod\u00e9rer le contenu. Nous n'utilisons pas les donn\u00e9es \u00e0 des fins publicitaires.",
+        card3_title: "Stockage et s\u00e9curit\u00e9",
+        card3_body: "Les donn\u00e9es sont stock\u00e9es sur des services cloud avec des mesures de s\u00e9curit\u00e9 raisonnables. Nous limitons l'acc\u00e8s et prot\u00e9geons les informations.",
+        card4_title: "Tiers",
+        card4_body: "Nous pouvons utiliser des fournisseurs de services pour exploiter l'app. Ces fournisseurs n'acc\u00e8dent qu'aux informations n\u00e9cessaires pour fournir le service.",
+        section_contact: "Contact",
+        contact_title: "Informations de contact",
+        contact_body: "Si vous avez des questions sur cette politique, \u00e9crivez \u00e0 notre \u00e9quipe d'assistance.",
+        section_changes: "Changements",
+        changes_title: "Changements dans la politique",
+        changes_body: "Nous pouvons mettre \u00e0 jour cette politique occasionnellement. Nous vous informerons lorsqu'il y aura des changements importants.",
+        footer: "Cette politique s'applique \u00e0 l'application mobile de Tu Alimento Diario. Si vous avez besoin d'une aide suppl\u00e9mentaire, notre \u00e9quipe peut vous guider."
+      }
+    };
+
+    const i18nElements = document.querySelectorAll("[data-i18n]");
+    const langButtons = document.querySelectorAll("[data-lang]");
+    const switcher = document.querySelector("[data-lang-switch]");
+    const toggle = document.querySelector("[data-lang-toggle]");
+    const menu = document.querySelector("[data-lang-menu]");
+
+    const setLanguage = (lang) => {
+      const dictionary = translations[lang] || translations.es;
+      i18nElements.forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (dictionary[key]) {
+          element.textContent = dictionary[key];
+        }
+      });
+      document.documentElement.lang = lang;
+      document.title = dictionary.title;
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === lang;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    };
+
+    const closeMenu = () => {
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isHidden = menu.hidden;
+      menu.hidden = !isHidden;
+      toggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+      if (!isHidden) {
+        return;
+      }
+      const activeButton = menu.querySelector("button.active");
+      if (activeButton) {
+        activeButton.focus();
+      }
+    });
+
+    menu.addEventListener("click", (event) => {
+      const target = event.target.closest("[data-lang]");
+      if (!target) {
+        return;
+      }
+      setLanguage(target.dataset.lang);
+      closeMenu();
+      toggle.focus();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!switcher.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    setLanguage("es");
+    closeMenu();
+  </script>
 </body>
 </html>
